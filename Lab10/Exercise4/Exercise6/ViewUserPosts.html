@@ -1,0 +1,47 @@
+
+
+<?php
+$mysqli = new mysqli("mysql.eecs.ku.edu", "stevenhu", "jeech7wa", "stevenhu");
+    
+    if ($mysqli->connect_errno) {
+        printf("Connect failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+    else{
+    }
+
+?>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet">
+</head>
+<body>
+    <form action="ViewUserPosts.php" method="post">
+
+        <div>
+            <select name = "Users">
+                <?php 
+                    $query = "SELECT * from Users";
+                    if($result = $mysqli->query($query)){
+                        while($row = $result->fetch_assoc()){
+                            $name = $row["user_id"];
+                            echo "<option value='$name'>$name</option>";
+                        }
+                    }
+                    $mysqli->close();
+                ?>
+            
+            </select>
+        </div>
+
+        <br>
+        <button type="submit">Submit
+    </form>
+</body>
+
+</html>
